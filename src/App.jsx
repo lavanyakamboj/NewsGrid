@@ -16,7 +16,7 @@ import "./App.css";
 export default function App(){
 	return(
 		<>
-			<HashRouter basename="/NewsGrid">
+			<HashRouter>
 				<Header/>
 				<Routes>
 					<Route path="/" element={<Home/>}/>
