@@ -1,0 +1,74 @@
+.container{
+  padding-bottom: 10rem;
+}
+.searchText {
+  margin-bottom: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.news-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.news-item {
+  flex: 0 0 23%;
+  background: white;
+  padding: 10px;
+  border-radius: 6px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s;
+}
+
+.news-item:hover {
+  transform: translateY(-4px);
+}
+
+.news-item img {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.news-item h2 {
+  font-size: 16px;
+  margin: 10px 0 5px;
+}
+
+.news-item a {
+  color: blue;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.loader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 100px); /* Adjust based on your footer height */
+  margin-bottom: 100px; /* Same as footer height to create the gap */
+  overflow: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .news-item {
+    flex: 0 0 48%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .news-item {
+    flex: 0 0 100%;
+  }
+}

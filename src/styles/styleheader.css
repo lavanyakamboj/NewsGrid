@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Manufacturing+Consent&display=swap");
+
+
+/* header */
+
+.header {
+	width: 100%;
+	padding: 10px 22px;
+	background-color: #343a40;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+	display: flex;
+	justify-content: space-between;
+	position: sticky;
+	top: 0;
+	z-index: 1030;
+	box-sizing: border-box;
+}
+
+.logo {
+	font-size: 40px;
+	font-family: "Manufacturing Consent", system-ui;
+	font-weight: 400;
+	font-style: normal;
+	color: #fff;
+	font-family: "Permanent Marker", cursive;
+}
+
+.fa-newspaper {
+	font-size: 30px;
+}
+
+
+/* navigation links */
+.navbar {
+	position: relative;
+	background-color: #343a40;
+}
+
+.navbar-nav {
+	display: flex;
+	flex-direction: row !important;
+	gap: 6px;
+	width: 40%;
+	min-width: 545px;
+	position: absolute !important;
+	right: 0;
+}
+.nav-item {
+	list-style: none;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 0 10px;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.nav-link {
+	color: #fff !important;
+}
+
+.nav-link:hover {
+	color: #ebaf50 !important;
+}
+
+.fa-bars {
+	color: white;
+	font-size: 25px;
+}
+
+.navbar .dropdown-menu {
+	min-width: 140px !important;
+	max-width: 180px;
+	width: fit-content;
+	padding: 8px 10px;
+	font-size: 14px;
+	white-space: nowrap;
+	box-sizing: border-box;
+}
+
+/* Dropdown override for manual show via React */
+.show-dropdown {
+	display: block !important;
+	position: absolute;
+	background-color: white;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	padding: 6px 0;
+	z-index: 9999;
+}
+
+.sidebar .dropdown-menu.show-dropdown {
+	position: relative;
+	border: none;
+	box-shadow: none;
+}
+.dropdown-item {
+	padding: 6px 10px;
+	font-size: 14px;
+}
+
+/* sidebar */
+
+.sidebar {
+	position: fixed;
+	top: 0;
+	right: -300px;
+	height: 100vh;
+	width: 250px;
+	z-index: 2000;
+	background-color: rgba(240, 237, 237, 0.39);
+	backdrop-filter: blur(20px);
+	box-shadow: -10px 0 10px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	transition: right 0.5s ease;
+}
+
+.sidebar.open {
+	right: 0;
+}
+
+.sidebar li {
+	list-style-type: none;
+	width: 200px;
+	margin-top: 20px;
+	text-decoration: none;
+	font-size: 20px;
+	color: #282727;
+}
+
+.sidebar li:hover {
+	background-color: rgb(236, 239, 241);
+}
+
+.sidebar button {
+	margin: 20px 0;
+	position: fixed;
+	right: 0;
+	background-color: rgba(144, 141, 141, 0.215);
+	border: none;
+	width: 50px;
+	margin-right: 20px;
+	font-size: 30px;
+}
+
+.sidebar li a {
+	width: 100px;
+	margin: 0 20px 0;
+	font-size: 20px;
+	color: #282727;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.nav {
+	width: 100px !important;
+	margin-top: 2px !important;
+	padding: 0 5px;
+	font-size: 8px !important;
+}
+
+.dropdown-nav-link {
+	margin: 0 !important;
+}
+
+/* subscribe and search */
+
+.head-bottom {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #ffffff;
+	padding: 13px 25px;
+	border-bottom: 1px solid #ddd;
+	width: 100%;
+}
+
+.local-time {
+	font-size: 16px;
+	color: #444;
+	font-weight: bold;
+	white-space: nowrap;
+	margin-left: 20px;
+	margin-right: 10px;
+	background-color: #ffc107;
+	border-radius: 5px;
+	padding: 6px 15px;
+}
+
+.local-time:hover {
+	background-color: #e0a800;
+} 
+
+
+.search {
+	align-self: flex-end;
+	height: 30px;
+	width: 50%;
+	border-radius: 5px;
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.search input {
+	border: 1px solid #000000;
+	border-radius: 5px;
+	background-color: #ffffff;
+	outline: navajowhite;
+	width: 95%;
+	height: 28px;
+	margin-right: 5px;
+	padding: 8px 35px 8px 10px;
+	border: 1px solid #ccc;
+}
+.search button {
+	border: none;
+	background-color: white;
+	margin-left: 5px;
+	cursor: pointer;
+}
+.search-icon {
+	font-size: 15px;
+	margin-right: 2px;
+}
+
+#search-btn {
+	border: none;
+	background-color: white;
+}
+
+.search .clear-icon {
+	position: absolute;
+	right: 60px;
+	cursor: pointer;
+	color: #999;
+	font-size: 16px;
+	z-index: 1;
+}
+
+.search .clear-icon:hover {
+	color: #000;
+}
+
+@media (max-width: 1100px) {
+	.search input {
+		width: 93%;
+	}
+}
+
+@media (max-width: 804px) {
+	.search input {
+		width: 90%;
+	}
+}

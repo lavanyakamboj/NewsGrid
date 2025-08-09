@@ -1,0 +1,17 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-size: 15px;
+	font-family: Arial, Helvetica, sans-serif;
+	background-color: #f1efef !important;
+	min-width: 600px;
+	overflow-x: hidden;
+}
+
+.clear-all {
+	clear: both;
+}
