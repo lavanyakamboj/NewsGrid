@@ -16,7 +16,7 @@ import "./App.css";
 export default function App(){
 	return(
 		<>
-			<BrowserRouter>
+			<BrowserRouter basename="/NewsGrid">
 				<Header/>
 				<Routes>
 					<Route path="/" element={<Home/>}/>
