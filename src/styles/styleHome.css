@@ -36,7 +36,9 @@
 }
 
 /* container */
-
+.container {
+    padding-bottom: 3rem !important;
+}
 
 /* section 1 */
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "../styles/styleWeather.css";
 import { Weather_API_KEY } from "./index";
+import axios from "axios";
 import { ClockLoader } from "react-spinners";
 
 const defaultCities = ["New York", "London", "Tokyo", "Sydney", "Delhi"];
@@ -14,30 +15,28 @@ export default function WeatherApp() {
 
   const fetchWeather = async (city) => {
     try {
-      const res = await fetch(
-        `https://api.weatherapi.com/v1/current.json?key=${Weather_API_KEY}&q=${city}`
+      const res = await axios.get(
+        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${Weather_API_KEY}&units=metric`
       );
-      if (!res.ok) throw new Error("Failed to fetch");
-      const data = await res.json();
+      const data = res.data;
 
       return {
-        name: `${data.location.name}, ${data.location.country}`,
-        temp: data.current.temp_c,
-        condition: data.current.condition.text,
-        icon: `https:${data.current.condition.icon}`,
-        humidity: data.current.humidity,
-        wind: data.current.wind_kph,
+        name: `${data.name}, ${data.sys.country}`,
+        temp: Math.round(data.main.temp),
+        condition: data.weather[0].description,
+        icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
+        humidity: data.main.humidity,
+        wind: data.wind.speed,
       };
-    } catch {
+    } catch (error) {
+      console.error("Error fetching weather:", error);
       return null;
     }
   };
 
   const loadDefaultCities = async () => {
     setLoading(true);
-    const results = await Promise.all(
-      defaultCities.map((city) => fetchWeather(city))
-    );
+    const results = await Promise.all(defaultCities.map((city) => fetchWeather(city)));
     setWeatherData(results.filter(Boolean));
     setLoading(false);
   };
@@ -47,11 +46,21 @@ export default function WeatherApp() {
       alert("Please enter a city name!");
       return;
     }
-
     setLoading(true);
     const weather = await fetchWeather(cityInput.trim());
     setWeatherData(weather ? [weather] : []);
     setLoading(false);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleClearSearch = () => {
+    setCityInput("");       // Clear input
+    loadDefaultCities();    // Reload default cities
   };
 
   useEffect(() => {
@@ -67,16 +76,22 @@ export default function WeatherApp() {
           type="text"
           value={cityInput}
           onChange={(e) => setCityInput(e.target.value)}
+          onKeyDown={handleKeyPress}
           placeholder="Enter city or location..."
         />
+        {cityInput && (
+          <button className="clear-btn" onClick={handleClearSearch}>
+            ✖
+          </button>
+        )}
         <button className="weather-btn" onClick={handleSearch}>
-          Get Weather
+          Search
         </button>
       </div>
 
       {loading ? (
         <div className="loader-container">
-          <ClockLoader/>
+          <ClockLoader size={50} color="#ffffff" />
         </div>
       ) : (
         <div className="weather-container">
@@ -87,10 +102,10 @@ export default function WeatherApp() {
               <div className="weather-card" key={index}>
                 <h2>{data.name}</h2>
                 <img src={data.icon} alt="Weather Icon" />
-                <p><strong>Temperature:</strong> {data.temp} °C</p>
-                <p><strong>Condition:</strong> {data.condition}</p>
-                <p><strong>Humidity:</strong> {data.humidity}%</p>
-                <p><strong>Wind Speed:</strong> {data.wind} km/h</p>
+                <p><strong>🌡 Temp:</strong> {data.temp} °C</p>
+                <p><strong>☁ Condition:</strong> {data.condition}</p>
+                <p><strong>💧 Humidity:</strong> {data.humidity}%</p>
+                <p><strong>🌬 Wind:</strong> {data.wind} km/h</p>
               </div>
             ))
           )}
