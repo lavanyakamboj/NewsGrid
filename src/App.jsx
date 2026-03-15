@@ -9,7 +9,7 @@ import Weather from "./components/Weather";
 import Entertainment from "./components/Entertainment";
 import Business from "./components/Business";
 import Sports from "./components/Sports";
-import Politics from "./components/politics";
+import Politics from "./components/Politics";
 
 import "./App.css";
 
